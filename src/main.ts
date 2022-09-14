@@ -8,7 +8,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('FlomRead API')
-    .setDescription('The FlomRead API description')
+    .setDescription('API REST')
     .setVersion('1.0')
     .addTag('flomread')
     .build();
