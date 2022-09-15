@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { Repository } from 'typeorm';
@@ -24,8 +24,14 @@ export class EstudianteService {
     return estudiantes.map((estudiante: Estudiante) => plainToClass(EstudianteDto, estudiante))
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} estudiante`;
+  async findOne(idEstudiante): Promise<EstudianteDto> {
+    const estudiante: Estudiante = await this.estudianteRepo.findOne(
+      idEstudiante
+    );
+    if (!estudiante) {
+      throw new NotFoundException(`Promoción #${idEstudiante} no encontrado`);
+    }
+    return plainToClass(EstudianteDto, estudiante)
   }
 
   update(id: number, updateEstudianteDto: UpdateEstudianteDto) {
