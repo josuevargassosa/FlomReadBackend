@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { EstudianteService } from '../services/estudiante.service';
-import { CreateEstudianteDto } from '../dto/create-estudiante.dto';
-import { UpdateEstudianteDto } from '../dto/update-estudiante.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { CreateEstudianteDto, UpdateEstudianteDto } from '../dto/estudiante.dtos';
 
 @ApiTags('Estudiante')
 @Controller('estudiante')

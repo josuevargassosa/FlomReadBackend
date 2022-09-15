@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 
@@ -17,25 +17,25 @@ export class Estudiante {
     @Column({name: 'Edad'})
     edad: number
 
-    @Column({name: 'Correo', type: 'nchar', length: 40})
+    @Column({name: 'Correo'})
     correo: string
 
     @Column({name: 'Grado'})
     grado: string
 
-    @Column({name: 'FotoPerfil', type: 'nchar', length: 50, nullable: false})
+    @Column({name: 'FotoPerfil'})
     fotoPerfil: string
 
     @Column({name: 'Estado'})
     estado: string
 
-    @Column({name: 'FechaCreacion'})
+    @CreateDateColumn({name: 'FechaCreacion'})
     fechaCreacion: Date
 
     @Column({name: 'Clave'})
     clave: string
 
-    @Column({name: 'FechaModificacion'})
-    fechaModificacion: string
+    @UpdateDateColumn({name: 'FechaModificacion'})
+    fechaModificacion: Date
 
 }

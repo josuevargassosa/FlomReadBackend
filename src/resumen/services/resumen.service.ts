@@ -1,15 +1,25 @@
 import { Injectable } from '@nestjs/common';
-import { CreateResumanDto } from '../dto/create-resuman.dto';
-import { UpdateResumanDto } from '../dto/update-resuman.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { plainToClass } from 'class-transformer';
+import { Repository } from 'typeorm';
+import { CreateResumanDto, ResumenDto, UpdateResumanDto } from '../dto/resumen.dto';
+import { Resumen } from '../entities/resuman.entity';
 
 @Injectable()
 export class ResumenService {
+
+  constructor(
+    @InjectRepository(Resumen) private estudianteRepo: Repository<Resumen>,
+  ) {
+  }
+  
   create(createResumanDto: CreateResumanDto) {
     return 'This action adds a new resuman';
   }
 
-  findAll() {
-    return `This action returns all resumen`;
+  async findAll(): Promise<ResumenDto[]> {
+    const estudiantes: Resumen[] = await this.estudianteRepo.find();
+    return estudiantes.map((resumen: Resumen ) => plainToClass(ResumenDto, resumen))
   }
 
   findOne(id: number) {

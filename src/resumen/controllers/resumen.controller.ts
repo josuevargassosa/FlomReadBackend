@@ -1,8 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ResumenService } from '../services/resumen.service';
-import { CreateResumanDto } from '../dto/create-resuman.dto';
-import { UpdateResumanDto } from '../dto/update-resuman.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { CreateResumanDto, UpdateResumanDto } from '../dto/resumen.dto';
 
 @ApiTags('Resumen')
 @Controller('resumen')
