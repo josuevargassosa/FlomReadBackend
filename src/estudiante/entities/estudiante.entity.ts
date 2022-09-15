@@ -5,40 +5,37 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Estudiante {
 
-    @PrimaryGeneratedColumn()
-    Id: number
+    @PrimaryGeneratedColumn({name: 'Id'})
+    id: number
 
-    @Column()
-    Nombres: string
+    @Column({name: 'Nombres'})
+    nombres: string
 
-    @Column()
-    Apellidos: string
+    @Column({name: 'Apellidos'})
+    apellidos: string
 
-    @Column()
-    Edad: number
+    @Column({name: 'Edad'})
+    edad: number
 
-    @Column()
-    Correo: string
+    @Column({name: 'Correo', type: 'nchar', length: 40})
+    correo: string
 
+    @Column({name: 'Grado'})
+    grado: string
 
-    @Column()
-    Grado: string
+    @Column({name: 'FotoPerfil', type: 'nchar', length: 50, nullable: false})
+    fotoPerfil: string
 
-    @Column()
-    FotoPerfil: string
+    @Column({name: 'Estado'})
+    estado: string
 
-    @Column()
-    Estado: string
+    @Column({name: 'FechaCreacion'})
+    fechaCreacion: Date
 
+    @Column({name: 'Clave'})
+    clave: string
 
-    @Column()
-    FechaCreacion: Date
-
-
-    @Column()
-    Clave: string
-
-    @Column()
-    FechaModificacion: string
+    @Column({name: 'FechaModificacion'})
+    fechaModificacion: string
 
 }

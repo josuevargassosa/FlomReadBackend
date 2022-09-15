@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { LibroService } from '../libro.service';
+import { LibroService } from '../services/libro.service';
 import { CreateLibroDto } from '../dto/create-libro.dto';
 import { UpdateLibroDto } from '../dto/update-libro.dto';
 import { ApiTags } from '@nestjs/swagger';

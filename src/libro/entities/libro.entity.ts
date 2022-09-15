@@ -5,32 +5,32 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Libro {
 
-    @PrimaryGeneratedColumn()
-    Id: number
+    @PrimaryGeneratedColumn({name: 'Id'})
+    id: number
 
-    @Column()
-    Nombre: string
+    @Column({name: 'Nombre'})
+    nombre: string
 
-    @Column()
-    Autor: string
+    @Column({name: 'Autor'})
+    autor: string
 
-    @Column()
-    Resumen: string
+    @Column({name: 'Resumen'})
+    resumen: string
 
-    @Column()
-    FotoPortada: string
-
-
-    @Column()
-    Estado: string
+    @Column({name: 'FotoPortada'})
+    fotoPortada: string
 
 
-    @Column()
-    FechaCreacion: Date
+    @Column({name: 'Estado'})
+    estado: string
 
 
-    @Column()
-    FechaModificacion: Date
+    @Column({name: 'FechaCreacion'})
+    fechaCreacion: Date
+
+
+    @Column({name: 'FechaModificacion'})
+    fechaModificacion: Date
 
 
 }

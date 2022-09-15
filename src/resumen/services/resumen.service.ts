@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateResumanDto } from './dto/create-resuman.dto';
-import { UpdateResumanDto } from './dto/update-resuman.dto';
+import { CreateResumanDto } from '../dto/create-resuman.dto';
+import { UpdateResumanDto } from '../dto/update-resuman.dto';
 
 @Injectable()
 export class ResumenService {

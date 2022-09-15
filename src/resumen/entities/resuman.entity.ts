@@ -5,22 +5,22 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class Resumen {
 
-    @PrimaryGeneratedColumn()
-    Id: number
+    @PrimaryGeneratedColumn({name: 'Id'})
+    id: number
 
-    @Column()
-    IdLibro: number
+    @Column({name: 'IdLibro'})
+    idLibro: number
 
-    @Column()
-    IdEstudiante: number
+    @Column({name: 'IdEstudiante'})
+    idEstudiante: number
 
-    @Column()
-    Descripcion: string
+    @Column({name: 'Descripcion'})
+    descripcion: string
 
-    @Column()
-    FechaCreacion: string
+    @Column({name: 'FechaCreacion'})
+    fechaCreacion: string
 
 
-    @Column()
-    FechaModificacion: string
+    @Column({name: 'FechaModificacion'})
+    fechaModificacion: string
 }
