@@ -1,5 +1,6 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { Exclude, Expose, Type } from 'class-transformer';
+import { IsNotEmpty, IsString } from 'class-validator';
 
 
 @Exclude()
@@ -29,6 +30,47 @@ export class LibroDto {
   readonly estado: string;
 }
 
-export class CreateLibroDto {}
+export class CreateLibroDto {
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly nombre: string;
 
-export class UpdateLibroDto extends PartialType(CreateLibroDto) {}
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly autor: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly resumen: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly fotoPortada: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly estado: string;
+}
+
+export class UpdateLibroDto extends PartialType(CreateLibroDto) {
+
+  @ApiProperty()
+  readonly nombre: string;
+
+  @ApiProperty()
+  readonly autor: string;
+
+  @ApiProperty()
+  readonly resumen: string;
+
+  @ApiProperty()
+  readonly fotoPortada: string;
+
+  @ApiProperty()
+  readonly estado: string;
+}

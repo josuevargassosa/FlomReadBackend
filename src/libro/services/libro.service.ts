@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { Repository } from 'typeorm';
@@ -9,25 +9,36 @@ import { Libro } from '../entities/libro.entity';
 export class LibroService {
 
   constructor(
-    @InjectRepository(Libro) private estudianteRepo: Repository<Libro>,
+    @InjectRepository(Libro) private libroRepo: Repository<Libro>,
   ) {
   }
   
-  create(createLibroDto: CreateLibroDto) {
-    return 'This action adds a new libro';
+  async create(createLibroDto: CreateLibroDto): Promise<LibroDto> {
+    const nuevoDato = await this.libroRepo.create(createLibroDto);
+    const guardarlibro: Libro = await this.libroRepo.save(nuevoDato);
+    return plainToClass(LibroDto, guardarlibro)
   }
 
   async findAll(): Promise<LibroDto[]> {
-    const estudiantes: Libro[] = await this.estudianteRepo.find();
-    return estudiantes.map((libro: Libro ) => plainToClass(LibroDto, libro))
+    const libros: Libro[] = await this.libroRepo.find();
+    return libros.map((libro: Libro ) => plainToClass(LibroDto, libro))
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} libro`;
+  async findOne(idLibro): Promise<LibroDto> {
+    const libro: Libro = await this.libroRepo.findOneBy({
+      id: idLibro,
+    }) 
+    if (!libro) {
+      throw new NotFoundException(`Promoción #${idLibro} no encontrado`);
+    }
+    return plainToClass(LibroDto, libro)
   }
 
-  update(id: number, updateLibroDto: UpdateLibroDto) {
-    return `This action updates a #${id} libro`;
+  async update(id: any, updateEstudianteDto: UpdateLibroDto): Promise<LibroDto> {
+    const libro = await this.libroRepo.findOneBy(id);
+    this.libroRepo.merge(libro, updateEstudianteDto);
+    const guardarDato: LibroDto = await this.libroRepo.save(libro);
+    return plainToClass(LibroDto, guardarDato)
   }
 
   remove(id: number) {

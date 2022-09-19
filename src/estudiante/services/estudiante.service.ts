@@ -35,9 +35,9 @@ export class EstudianteService {
   }
 
   async update(id, updateEstudianteDto: UpdateEstudianteDto): Promise<EstudianteDto> {
-    const promocion = await this.estudianteRepo.findOne(id);
-    this.estudianteRepo.merge(promocion, updateEstudianteDto);
-    const guardarDato: EstudianteDto = await this.estudianteRepo.save(promocion);
+    const estudiante = await this.estudianteRepo.findOne(id);
+    this.estudianteRepo.merge(estudiante, updateEstudianteDto);
+    const guardarDato: EstudianteDto = await this.estudianteRepo.save(estudiante);
     return plainToClass(EstudianteDto, guardarDato)
   }
 

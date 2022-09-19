@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/common';
 import { EstudianteService } from '../services/estudiante.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateEstudianteDto, UpdateEstudianteDto } from '../dto/estudiante.dtos';
@@ -23,8 +23,8 @@ export class EstudianteController {
     return this.estudianteService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEstudianteDto: UpdateEstudianteDto) {
+  @Put(':id')
+  update(@Param('id') id: number, @Body() updateEstudianteDto: UpdateEstudianteDto) {
     return this.estudianteService.update(+id, updateEstudianteDto);
   }
 
