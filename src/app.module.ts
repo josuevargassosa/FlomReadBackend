@@ -7,6 +7,7 @@ import { EstudianteModule } from './estudiante/estudiante.module';
 import { LibroModule } from './libro/libro.module';
 import { ResumenModule } from './resumen/resumen.module';
 import { DatabaseModule } from './database/database.module';
+import { EstadisticaModule } from './estadistica/estadistica.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DatabaseModule } from './database/database.module';
     EstudianteModule,
     LibroModule,
     ResumenModule,
+    EstadisticaModule,
   ],
   controllers: [AppController],
   providers: [AppService],
