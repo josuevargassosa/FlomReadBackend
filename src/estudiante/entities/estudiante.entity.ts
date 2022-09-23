@@ -3,7 +3,7 @@ import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateCol
 
 
 @Entity()
-export class Estudiante {
+export class Lector {
 
     @PrimaryGeneratedColumn({name: 'Id'})
     id: number
@@ -13,6 +13,9 @@ export class Estudiante {
 
     @Column({name: 'Apellidos'})
     apellidos: string
+
+    @Column({name: 'Identificacion'})
+    identificacion: string
 
     @Column({name: 'Edad'})
     edad: number

@@ -33,6 +33,10 @@ export class EstudianteDto {
 
   @Expose()
   @ApiProperty()
+  readonly identificacion: string;
+
+  @Expose()
+  @ApiProperty()
   readonly edad: number;
 
   @Expose()
@@ -63,6 +67,11 @@ export class CreateEstudianteDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly apellidos: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly identificacion: string;
 
   @IsNumber()
   @IsNotEmpty()
@@ -106,6 +115,9 @@ export class UpdateEstudianteDto extends PartialType(CreateEstudianteDto) {
 
   @ApiProperty()
   readonly apellidos: string;
+
+  @ApiProperty()
+  readonly identificacion: string;
 
   @ApiProperty()
   readonly edad: number;

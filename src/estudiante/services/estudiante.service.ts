@@ -3,29 +3,29 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { RelationId, Repository } from 'typeorm';
 import { CreateEstudianteDto, EstudianteDto, UpdateEstudianteDto } from '../dto/estudiante.dtos';
-import { Estudiante } from '../entities/estudiante.entity';
+import { Lector } from '../entities/estudiante.entity';
 
 @Injectable()
 export class EstudianteService {
 
   constructor(
-    @InjectRepository(Estudiante) private estudianteRepo: Repository<Estudiante>,
+    @InjectRepository(Lector) private estudianteRepo: Repository<Lector>,
   ) {
   }
 
   async create(createEstudianteDto: CreateEstudianteDto): Promise<EstudianteDto> {
     const nuevoDato = await this.estudianteRepo.create(createEstudianteDto);
-    const guardarEstudiante: Estudiante = await this.estudianteRepo.save(nuevoDato);
+    const guardarEstudiante: Lector = await this.estudianteRepo.save(nuevoDato);
     return plainToClass(EstudianteDto, guardarEstudiante)
   }
 
   async findAll(): Promise<EstudianteDto[]> {
-    const estudiantes: Estudiante[] = await this.estudianteRepo.find();
-    return estudiantes.map((estudiante: Estudiante) => plainToClass(EstudianteDto, estudiante))
+    const estudiantes: Lector[] = await this.estudianteRepo.find();
+    return estudiantes.map((estudiante: Lector) => plainToClass(EstudianteDto, estudiante))
   }
 
   async findOne(idEstudiante): Promise<EstudianteDto> {
-    const estudiante: Estudiante = await this.estudianteRepo.findOneBy({
+    const estudiante: Lector = await this.estudianteRepo.findOneBy({
       id: idEstudiante,
     }) 
     if (!estudiante) {
@@ -35,7 +35,7 @@ export class EstudianteService {
   }
 
   async update(id, updateEstudianteDto: UpdateEstudianteDto): Promise<EstudianteDto> {
-    const estudiante = await this.estudianteRepo.findOne(id);
+    const estudiante = await this.estudianteRepo.findOneBy(id);
     this.estudianteRepo.merge(estudiante, updateEstudianteDto);
     const guardarDato: EstudianteDto = await this.estudianteRepo.save(estudiante);
     return plainToClass(EstudianteDto, guardarDato)
