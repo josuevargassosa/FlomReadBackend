@@ -3,16 +3,16 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EstudianteModule } from './estudiante/estudiante.module';
+import { LectorModule } from './lector/lector.module';
 import { LibroModule } from './libro/libro.module';
-import { ResumenModule } from './resumen/resumen.module';
+import { ResumenModule } from './comentario/resumen.module';
 import { DatabaseModule } from './database/database.module';
 import { EstadisticaModule } from './estadistica/estadistica.module';
 
 @Module({
   imports: [
     DatabaseModule,
-    EstudianteModule,
+    LectorModule,
     LibroModule,
     ResumenModule,
     EstadisticaModule,

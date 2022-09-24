@@ -14,7 +14,7 @@ export class ResumenDto {
 
   @Expose()
   @ApiProperty()
-  readonly idEstudiante: number;
+  readonly idLector: number;
 
   @Expose()
   @ApiProperty()

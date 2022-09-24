@@ -11,8 +11,8 @@ export class Resumen {
     @Column({name: 'IdLibro'})
     idLibro: number
 
-    @Column({name: 'IdEstudiante'})
-    idEstudiante: number
+    @Column({name: 'IdLector'})
+    idLector: number
 
     @Column({name: 'Descripcion'})
     descripcion: string

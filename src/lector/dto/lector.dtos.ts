@@ -18,7 +18,7 @@ import { Exclude, Expose, Type } from 'class-transformer';
 
 
 @Exclude()
-export class EstudianteDto {
+export class LectorDto {
   @Expose()
   @ApiProperty()
   readonly id: number;
@@ -57,7 +57,7 @@ export class EstudianteDto {
 }
 
 
-export class CreateEstudianteDto {
+export class CreateLectorDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
@@ -109,7 +109,7 @@ export class CreateEstudianteDto {
 }
 
 
-export class UpdateEstudianteDto extends PartialType(CreateEstudianteDto) {
+export class UpdateLectorDto extends PartialType(CreateLectorDto) {
   @ApiProperty()
   readonly nombres: string;
 
