@@ -8,6 +8,7 @@ import { LibroModule } from './libro/libro.module';
 import { ResumenModule } from './comentario/resumen.module';
 import { DatabaseModule } from './database/database.module';
 import { EstadisticaModule } from './estadistica/estadistica.module';
+import { LibroLectorModule } from './libro-lector/libro-lector.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { EstadisticaModule } from './estadistica/estadistica.module';
     LibroModule,
     ResumenModule,
     EstadisticaModule,
+    LibroLectorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -24,6 +24,11 @@ export class LectorService {
     return lectores.map((lector: Lector) => plainToClass(LectorDto, lector))
   }
 
+  async countAll(): Promise<number> {
+    const lectores = await this.lectorRepo.count();
+    return lectores
+  }
+
   async findOne(idLector): Promise<LectorDto> {
     const lector: Lector = await this.lectorRepo.findOneBy({
       id: idLector,

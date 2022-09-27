@@ -24,6 +24,36 @@ export class LibroService {
     return libros.map((libro: Libro ) => plainToClass(LibroDto, libro))
   }
 
+  // async relacionfindAll(): Promise<LibroDto[]> {
+  //   //LIBRO ESTUDIANTE
+  //   const libros: Libro[] = await this.libroRepo.find({
+  //     // relation: [
+  //     //   "libro", "libro.precio",
+  //     //   "lector", "lector.precio"
+  //     // ]
+  //   });
+  //   return libros.map((libro: Libro ) => plainToClass(LibroDto, libro))
+  // }
+
+  async countAll(): Promise<number> {
+    const lectores = await this.libroRepo.count();
+    return lectores
+  }
+
+  // async countLibroPrestaodsfindAll(): Promise<number> {
+  //   //LIBRO ESTUDIANTE
+  //   const libros = await this.libroRepo.count({
+  //     where: {
+  //       estado: 'prestado'
+  //     }
+  //     // relation: [
+  //     //   "libro", "libro.precio",
+  //     //   "lector", "lector.precio"
+  //     // ]
+  //   });
+  //   return libros
+  // }
+
   async findOne(idLibro): Promise<LibroDto> {
     const libro: Libro = await this.libroRepo.findOneBy({
       id: idLibro,
