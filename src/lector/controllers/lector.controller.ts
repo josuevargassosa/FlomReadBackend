@@ -18,6 +18,11 @@ export class LectorController {
     return this.lectorService.findAll();
   }
 
+  @Get('Count')
+  countAll() {
+    return this.lectorService.countAll();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.lectorService.findOne(+id);

@@ -18,10 +18,16 @@ export class LibroController {
     return this.libroService.findAll();
   }
 
+  @Get('Count')
+  countAll() {
+    return this.libroService.countAll();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.libroService.findOne(+id);
   }
+
 
   @Put(':id')
   update(@Param('id') id: string, @Body() updateLibroDto: UpdateLibroDto) {

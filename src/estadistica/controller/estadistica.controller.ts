@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { EstadisticaService } from './../services/estadistica.service';
 import { CreateEstadisticaDto } from './../dto/create-estadistica.dto';
 import { UpdateEstadisticaDto } from './../dto/update-estadistica.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Estadistica')
 @Controller('estadistica')
 export class EstadisticaController {
   constructor(private readonly estadisticaService: EstadisticaService) {}

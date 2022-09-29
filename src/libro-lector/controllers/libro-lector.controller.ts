@@ -1,9 +1,11 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { LibroLectorService } from '../services/libro-lector.service';
-import { CreateLibroLectorDto } from '../dto/create-libro-lector.dto';
-import { UpdateLibroLectorDto } from '../dto/update-libro-lector.dto';
+import { CreateLibroLectorDto } from '../dto/libro-lector.dto';
+import { UpdateLibroLectorDto } from '../dto/libro-lector.dto';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('libro-lector')
+@ApiTags('LibroLector')
+@Controller('LibroLector')
 export class LibroLectorController {
   constructor(private readonly libroLectorService: LibroLectorService) {}
 
@@ -15,6 +17,16 @@ export class LibroLectorController {
   @Get()
   findAll() {
     return this.libroLectorService.findAll();
+  }
+
+  // @Get('Count/Leidos')
+  // countAll() {
+  //   return this.lectorService.countAll();
+  // }
+
+  @Get('Count/Prestados')
+  countAll() {
+    return this.libroLectorService.countLibrosPrestaodsfindAll();
   }
 
   @Get(':id')
