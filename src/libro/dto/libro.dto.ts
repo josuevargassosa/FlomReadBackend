@@ -55,6 +55,11 @@ export class CreateLibroDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly estado: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly codigo: string;
 }
 
 export class UpdateLibroDto extends PartialType(CreateLibroDto) {
@@ -73,4 +78,7 @@ export class UpdateLibroDto extends PartialType(CreateLibroDto) {
 
   @ApiProperty()
   readonly estado: string;
+
+  @ApiProperty()
+  readonly codigo: string;
 }

@@ -16,17 +16,17 @@ export class LibroLectorController {
 
   @Get()
   findAll() {
-    return this.libroLectorService.findAll();
+    return this.libroLectorService.getPrestamos();
   }
 
-  // @Get('Count/Leidos')
-  // countAll() {
-  //   return this.lectorService.countAll();
-  // }
+  @Get('Cantidad/Leidos')
+  cantidadLeidos() {
+    return this.libroLectorService.cantidadLibrosLeidos();
+  }
 
-  @Get('Count/Prestados')
+  @Get('Cantidad/Prestados')
   countAll() {
-    return this.libroLectorService.countLibrosPrestaodsfindAll();
+    return this.libroLectorService.cantidadLibrosPrestados();
   }
 
   @Get(':id')

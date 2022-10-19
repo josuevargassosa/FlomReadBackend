@@ -2,7 +2,7 @@ import { Lector } from "src/lector/entities/lector.entity";
 import { Libro } from "src/libro/entities/libro.entity";
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({name: "LibroLector"})
 export class LibroLector {
 
     @PrimaryGeneratedColumn({name: 'Id'})
@@ -25,13 +25,14 @@ export class LibroLector {
     @Column({name: 'FechaModificacion'})
     fechaModificacion: Date;
 
-    @ManyToOne(() => Libro, (libro) => libro.id)
 
     //JOIN COLUMMN LIBRO
-    @JoinColumn({name: 'Id', referencedColumnName: 'id'})
+    @ManyToOne(() => Libro, (libro) => libro.id)
+    @JoinColumn({name: 'IdLibro', referencedColumnName: 'id'})
     libro: Libro
 
     //JOIN COLUMMN LECTOR
-    @JoinColumn({name: 'Id', referencedColumnName: 'id'})
+    @ManyToOne(() => Lector, (lector) => lector.id)
+    @JoinColumn({name: 'IdLector', referencedColumnName: 'id'})
     lector: Lector
 }

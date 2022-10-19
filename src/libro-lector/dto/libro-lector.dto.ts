@@ -11,15 +11,27 @@ export class LibroLectorDto {
 
     @Expose()
     @ApiProperty()
-    readonly idLibro: number;
+    readonly lector: string;
 
     @Expose()
     @ApiProperty()
-    readonly idLector: number;
+    readonly libro: string;
 
     @Expose()
     @ApiProperty()
     readonly estado: string;
+
+    @Expose()
+    @ApiProperty()
+    readonly tiempo: string;
+
+    @Expose()
+    @ApiProperty()
+    readonly fechaCreacion: string;
+
+    @Expose()
+    @ApiProperty()
+    readonly fechaModificacion: string;
 }
 
 export class CreateLibroLectorDto {

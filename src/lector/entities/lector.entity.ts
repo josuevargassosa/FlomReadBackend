@@ -41,4 +41,7 @@ export class Lector {
     @UpdateDateColumn({name: 'FechaModificacion'})
     fechaModificacion: Date
 
+    @Column({name: 'Sexo'})
+    sexo: string
+
 }

@@ -32,11 +32,7 @@ export class Libro {
     @Column({name: 'FechaModificacion'})
     fechaModificacion: Date
 
-    // //JOIN COLUMMN LIBRO
-    // JoinColumn({id: 'Id', referenceName: 'IdLibro'})
-    // libro: Libro
+    @Column({name: 'Codigo'})
+    Codigo: string
 
-    // //JOIN COLUMMN LIBRO
-    // JoinColumn({id: 'Id', referenceName: 'IdLibro'})
-    // lector: Lector
 }

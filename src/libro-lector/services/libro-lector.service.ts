@@ -13,25 +13,43 @@ export class LibroLectorService {
     @InjectRepository(LibroLector) private libroLectorRepo: Repository<LibroLector>,
   ) {
   }
-  
-  create(createLibroLectorDto: CreateLibroLectorDto) {
-    return 'This action adds a new libroLector';
+
+  async create(createLibroLectorDto: CreateLibroLectorDto): Promise<CreateLibroLectorDto> {
+    const nuevoDato = await this.libroLectorRepo.create(createLibroLectorDto);
+    const guardarlibroPrestamo: LibroLector = await this.libroLectorRepo.save(nuevoDato);
+    return plainToClass(CreateLibroLectorDto, guardarlibroPrestamo)
   }
 
-  async findAll(): Promise<LibroLectorDto[]> {
-    const libros: LibroLector[] = await this.libroLectorRepo.find();
-    return libros.map((libro: LibroLector ) => plainToClass(LibroLectorDto, libro))
+  async getPrestamos(): Promise<LibroLectorDto[]> {
+    const libros: LibroLector[] = await this.libroLectorRepo.find(
+      {
+        relations: [
+          "libro",
+          "lector"
+        ]
+      }
+    );
+    return libros.map((libro: LibroLector) => plainToClass(LibroLectorDto, libro))
   }
 
   findOne(id: number) {
     return `This action returns a #${id} libroLector`;
   }
 
-  async countLibrosPrestaodsfindAll(): Promise<number> {
+  async cantidadLibrosLeidos(): Promise<number> {
     const libros = await this.libroLectorRepo.count({
-      // where: {
-      //   estado: 'prestado'
-      // }
+      where: {
+        estado: 'L'
+      }
+    });
+    return libros
+  }
+
+  async cantidadLibrosPrestados(): Promise<number> {
+    const libros = await this.libroLectorRepo.count({
+      where: {
+        estado: 'P'
+      }
       // relation: [
       //   "libro", "libro.precio",
       //   "lector", "lector.precio"

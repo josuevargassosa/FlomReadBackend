@@ -54,6 +54,10 @@ export class LectorDto {
   @Expose()
   @ApiProperty()
   readonly estado: string;
+
+  @Expose()
+  @ApiProperty()
+  readonly sexo: string;
 }
 
 
@@ -86,26 +90,27 @@ export class CreateLectorDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  @ApiProperty()
   readonly grado: string;
 
   @IsString()
   @IsNotEmpty()
-  @ApiProperty()
   @ApiProperty()
   readonly fotoPerfil: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  @ApiProperty()
   readonly estado: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  @ApiProperty()
   readonly clave: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly sexo: string;
 }
 
 
@@ -133,4 +138,7 @@ export class UpdateLectorDto extends PartialType(CreateLectorDto) {
 
   @ApiProperty()
   readonly estado: string;
+
+  @ApiProperty()
+  readonly sexo: string;
 }
