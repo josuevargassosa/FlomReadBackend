@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { databaseProviders } from './database.providers';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -12,6 +13,7 @@ import { LibroLectorModule } from './libro-lector/libro-lector.module';
 
 @Module({
   imports: [
+    // AuthModule, 
     DatabaseModule,
     LectorModule,
     LibroModule,
