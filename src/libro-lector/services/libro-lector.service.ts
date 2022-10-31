@@ -72,8 +72,7 @@ export class LibroLectorService {
     if (!dataPrestamo) {
       throw new NotFoundException(`Prestamo del lector #${idLector} no encontrado`);
     }
-    //return dataPrestamo.map((libro: LibroLector) => plainToClass(prestamosLectorDto, dataPrestamo))
-    return plainToClass(prestamosLectorDto, dataPrestamo)
+    return dataPrestamo.map((prestamo: LibroLector) => plainToClass(prestamosLectorDto, prestamo))
   }
 
   async cantidadLibrosLeidos(): Promise<number> {

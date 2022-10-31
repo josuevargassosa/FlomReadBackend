@@ -7,6 +7,8 @@ import { PayloadToken } from "./../models/token.model";
 // import { EmpresaDto, EmpresaEmailDto, UpdateClaveDto, UpdateCorreoDto, UpdateEmpresaDto } from 'src/empresa/dtos/empresa.dtos';
 import { classToPlain, plainToClass } from 'class-transformer';
 import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
+import { Administrador } from 'src/administrador/entities/administrador.entity';
+import { AdministradorDto, loginDto } from 'src/administrador/dto/administrador.dto';
 
 
 @Injectable()
@@ -17,6 +19,7 @@ export class AuthService {
         // @InjectRepository(Empresa) private empresaRepo: Repository<Empresa>,
         // @InjectRepository(Permiso) private permisoRepo: Repository<Permiso>,
         // private mailService: MailService
+        @InjectRepository(Administrador) private administradorRepo: Repository<Administrador>,
         ) { }
 
     async validateUser(correo: string, clave: string) {
@@ -31,14 +34,28 @@ export class AuthService {
         // return null;
     }
 
-    generateJWT(empresa: any) {
-        const payload: PayloadToken = { nombre: empresa.nombre, sub: empresa.id, idPlan: empresa.idPlan, idRol: empresa.idRol } 
-        console.log(payload)
-        return {
-            access_token: this.jwtService.sign(payload),
-            empresa,
-            message: "Inicio de sesión exitoso"
+    async register(usuario: AdministradorDto) {
+        const user = this.administradorRepo.create(usuario);
+        const dataUser = await this.administradorRepo.save(user);
+        let data: loginDto = {
+            clave: dataUser.clave,
+            correo: dataUser.correo,
         }
+        this.generateJWT(data);
+    }
+
+    async generateJWT(usuario: loginDto, message?) {
+        const usuarioFind: AdministradorDto  = await this.findClienteByEmail(usuario.correo)
+        const payload: PayloadToken = { sub: usuarioFind.id, correo: usuarioFind.correo } 
+        return {
+                accessToken: this.jwtService.sign(payload),
+                usuarioFind,
+                message: message != null ? message : "INICIO DE SESIÓN EXITOSO"
+        }
+    }
+
+    findClienteByEmail(correo: string) {
+        return this.administradorRepo.findOne({ where: { correo } });
     }
 
     refreshJWT(token: any) {

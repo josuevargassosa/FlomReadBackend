@@ -6,16 +6,22 @@ import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 // import { EmpresaDto, UpdateClaveDto, UpdateCorreoDto, UpdateEmpresaDto } from 'src/empresa/dtos/empresa.dtos';
 import { Public } from '../decorators/public.decorator';
+import { AdministradorDto, loginDto } from 'src/administrador/dto/administrador.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
     constructor(private authService: AuthService) { }
-    @UseGuards(AuthGuard('local'))
+    // @UseGuards(AuthGuard('local'))
     @Post('login')
-    login(@Req() req: Request) {
-        const empresa = req.user as any;
-        return this.authService.generateJWT(empresa);
+    login(@Body() req: loginDto) {
+        return this.authService.generateJWT(req);
+    }
+
+    // @UseGuards(AuthGuard('local'))
+    @Post('register')
+    register(@Body() user: AdministradorDto) {
+        return this.authService.register(user);
     }
 
     @UseGuards(JwtAuthGuard)

@@ -1,26 +1,43 @@
 import { Injectable } from '@nestjs/common';
-import { CreateEstadisticaDto } from '../dto/create-estadistica.dto';
-import { UpdateEstadisticaDto } from '../dto/update-estadistica.dto';
+import { EstadisticaLibroDto, EstadisticaLectorDto } from '../dto/create-estadistica.dto';
+import { LibroService } from 'src/libro/services/libro.service';
+import { LibroLector } from 'src/libro-lector/entities/libro-lector.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class EstadisticaService {
-  create(createEstadisticaDto: CreateEstadisticaDto) {
-    return 'This action adds a new estadistica';
+  constructor(
+    @InjectRepository(LibroLector) private libroLectorRepo: Repository<LibroLector>,
+    private libroLector: LibroLector,
+  ) {
   }
 
-  findAll() {
-    return `This action returns all estadistica`;
+
+  async getTop5Libros() {
+    // const librosLeidos = await this.libroLectorRepo.find(
+    //   {
+    //     where: {
+    //       estado: 'L'
+    //     }, 
+    //     take: 5,
+        
+    //   }
+    // )
+    return await this.libroLectorRepo.query("sp_prueba @email='"+email +"'");
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} estadistica`;
+  // async find(email: string): Promise<Usuario[]>{
+  //   return await this.usuariosRepository.query("sp_prueba @email='"+email +"'");
+  // }
+
+
+
+  getTop5Instituciones() {
+
   }
 
-  update(id: number, updateEstadisticaDto: UpdateEstadisticaDto) {
-    return `This action updates a #${id} estadistica`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} estadistica`;
+  getTop5Lectores() {
+    
   }
 }
