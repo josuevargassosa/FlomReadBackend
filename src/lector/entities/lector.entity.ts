@@ -44,4 +44,7 @@ export class Lector {
     @Column({name: 'Sexo'})
     sexo: string
 
+    @Column({name: 'Institucion'})
+    institucion: string
+
 }

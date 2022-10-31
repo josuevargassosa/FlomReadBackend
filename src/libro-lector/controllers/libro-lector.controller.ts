@@ -29,15 +29,15 @@ export class LibroLectorController {
     return this.libroLectorService.cantidadLibrosPrestados();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.libroLectorService.findOne(+id);
+  @Get(':idLector')
+  findOne(@Param('idLector') id: number) {
+    return this.libroLectorService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLibroLectorDto: UpdateLibroLectorDto) {
-    return this.libroLectorService.update(+id, updateLibroLectorDto);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateLibroLectorDto: UpdateLibroLectorDto) {
+  //   return this.libroLectorService.update(+id, updateLibroLectorDto);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

@@ -58,6 +58,10 @@ export class LectorDto {
   @Expose()
   @ApiProperty()
   readonly sexo: string;
+
+  @Expose()
+  @ApiProperty()
+  readonly institucion: string;
 }
 
 
@@ -111,6 +115,11 @@ export class CreateLectorDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly sexo: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly institucion: string;
 }
 
 
@@ -141,4 +150,7 @@ export class UpdateLectorDto extends PartialType(CreateLectorDto) {
 
   @ApiProperty()
   readonly sexo: string;
+
+  @ApiProperty()
+  readonly institucion: string;
 }

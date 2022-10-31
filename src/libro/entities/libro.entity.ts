@@ -33,6 +33,6 @@ export class Libro {
     fechaModificacion: Date
 
     @Column({name: 'Codigo'})
-    Codigo: string
+    codigo: string
 
 }

@@ -1,6 +1,7 @@
+import { Exclude } from "class-transformer";
 import { Lector } from "src/lector/entities/lector.entity";
 import { Libro } from "src/libro/entities/libro.entity";
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity({name: "LibroLector"})
 export class LibroLector {
@@ -17,14 +18,11 @@ export class LibroLector {
     @Column({name: 'Estado'})
     estado: string
 
+    @Column({ name: 'FechaCreacion'})
+    fechaCreacion: Date = new Date()
 
-    @Column({name: 'FechaCreacion'})
-    fechaCreacion: Date
-
-
-    @Column({name: 'FechaModificacion'})
-    fechaModificacion: Date;
-
+    @UpdateDateColumn({name: 'FechaModificacion'})
+    fechaModificacion: Date = new Date();
 
     //JOIN COLUMMN LIBRO
     @ManyToOne(() => Libro, (libro) => libro.id)

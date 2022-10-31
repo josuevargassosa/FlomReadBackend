@@ -28,6 +28,10 @@ export class LibroDto {
   @Expose()
   @ApiProperty()
   readonly estado: string;
+
+  @Expose()
+  @ApiProperty()
+  readonly codigo: string;
 }
 
 export class CreateLibroDto {

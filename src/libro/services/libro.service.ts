@@ -64,9 +64,9 @@ export class LibroService {
     return plainToClass(LibroDto, libro)
   }
 
-  async update(id: any, updateLectorDto: UpdateLibroDto): Promise<LibroDto> {
+  async update(id: any, updateLibroDto: UpdateLibroDto): Promise<LibroDto> {
     const libro = await this.libroRepo.findOneBy(id);
-    this.libroRepo.merge(libro, updateLectorDto);
+    this.libroRepo.merge(libro, updateLibroDto);
     const guardarDato: LibroDto = await this.libroRepo.save(libro);
     return plainToClass(LibroDto, guardarDato)
   }
