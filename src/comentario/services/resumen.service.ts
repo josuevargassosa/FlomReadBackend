@@ -3,23 +3,33 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { Repository } from 'typeorm';
 import { CreateResumanDto, ResumenDto, UpdateResumanDto } from '../dto/resumen.dto';
-import { Resumen } from '../entities/resuman.entity';
+import { Comentario } from '../entities/resuman.entity';
 
 @Injectable()
 export class ResumenService {
 
   constructor(
-    @InjectRepository(Resumen) private estudianteRepo: Repository<Resumen>,
+    @InjectRepository(Comentario) private comentarioRepo: Repository<Comentario>,
   ) {
   }
   
-  create(createResumanDto: CreateResumanDto) {
-    return 'This action adds a new resuman';
+  async create(createComentarioDto: CreateResumanDto): Promise<CreateResumanDto | string> {
+    const nuevoDato = await this.comentarioRepo.create(createComentarioDto);
+    const guardarComentario: Comentario = await this.comentarioRepo.save(nuevoDato);
+    return plainToClass(CreateResumanDto, guardarComentario)
   }
 
   async findAll(): Promise<ResumenDto[]> {
-    const estudiantes: Resumen[] = await this.estudianteRepo.find();
-    return estudiantes.map((resumen: Resumen ) => plainToClass(ResumenDto, resumen))
+    const comentarios: Comentario[] = await this.comentarioRepo.find(
+      {
+        relations: [
+          "libro",
+          "lector"
+        ]
+      }
+    );
+    console.log(comentarios);
+    return comentarios.map((resumen: Comentario ) => plainToClass(ResumenDto, resumen))
   }
 
   findOne(id: number) {

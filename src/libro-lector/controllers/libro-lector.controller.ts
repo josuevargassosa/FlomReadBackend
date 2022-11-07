@@ -29,6 +29,11 @@ export class LibroLectorController {
     return this.libroLectorService.cantidadLibrosPrestados();
   }
 
+  // @Get(':idPrestamo')
+  // findByIdPrestamo(@Param('idPrestamo') idPrestamo: number) {
+  //   return this.libroLectorService.findPrestamoById(idPrestamo);
+  // }
+
   @Get(':idLector')
   findOne(@Param('idLector') id: number) {
     return this.libroLectorService.findOne(id);

@@ -40,7 +40,9 @@ export class LectorService {
   }
 
   async update(id, updateLectorDto: UpdateLectorDto): Promise<LectorDto> {
-    const lector = await this.lectorRepo.findOneBy(id);
+    console.log('updateLectorDto', updateLectorDto, id)
+    const lector = await this.lectorRepo.findOneBy({id: id});
+    console.log('lector', lector)
     this.lectorRepo.merge(lector, updateLectorDto);
     const guardarDato: LectorDto = await this.lectorRepo.save(lector);
     return plainToClass(LectorDto, guardarDato)

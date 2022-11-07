@@ -13,5 +13,6 @@ export default registerAs('config', () => {
       user: process.env.DATABASE_USERNAME,
       host: process.env.DATABASE_HOST,
     },
+    jwtSecret: process.env.JWT_SECRET
   };
 });

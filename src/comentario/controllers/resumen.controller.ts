@@ -3,8 +3,8 @@ import { ResumenService } from '../services/resumen.service';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateResumanDto, UpdateResumanDto } from '../dto/resumen.dto';
 
-@ApiTags('Resumen')
-@Controller('resumen')
+@ApiTags('Comentario')
+@Controller('Comentario')
 export class ResumenController {
   constructor(private readonly resumenService: ResumenService) {}
 

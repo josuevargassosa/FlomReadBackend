@@ -8,12 +8,12 @@ export class Administrador {
     @PrimaryGeneratedColumn({name: 'Id'})
     id: number
 
-    @Column({name: 'Nombres'})
-    nombres: string
+    @Column({name: 'Nombre'})
+    nombre: string
 
-    @Column({name: 'Identificacion'})
+    @Column({name: 'Correo'})
     correo: string
 
-    @Column({name: 'Apellidos'})
+    @Column({name: 'Clave'})
     clave: string
 }

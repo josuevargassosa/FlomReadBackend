@@ -64,6 +64,40 @@ export class LectorDto {
   readonly institucion: string;
 }
 
+export class LectorFindDto {
+  
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly id: number;
+
+
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly correo: string;
+
+}
+
+export class loginLectorDto {
+
+  @IsString()
+  @Expose()
+  @IsNotEmpty()
+  readonly nombres: string;
+
+  @IsEmail()
+  @Expose()
+  @ApiProperty()
+  readonly correo: string;
+
+  @IsString()
+  @Expose()
+  @ApiProperty()
+  readonly clave: string;
+}
+
+
 
 export class CreateLectorDto {
   @IsString()

@@ -32,14 +32,15 @@ export class Lector {
     @Column({name: 'Estado'})
     estado: string
 
-    @CreateDateColumn({name: 'FechaCreacion'})
-    fechaCreacion: Date
+    @Column({ name: 'FechaCreacion'})
+    fechaCreacion: Date = new Date()
+
+
+    @UpdateDateColumn({name: 'FechaModificacion'})
+    fechaModificacion: Date = new Date();
 
     @Column({name: 'Clave'})
     clave: string
-
-    @UpdateDateColumn({name: 'FechaModificacion'})
-    fechaModificacion: Date
 
     @Column({name: 'Sexo'})
     sexo: string

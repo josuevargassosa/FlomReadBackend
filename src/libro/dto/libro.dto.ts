@@ -1,6 +1,6 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { Exclude, Expose, Type } from 'class-transformer';
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 
 @Exclude()
@@ -32,6 +32,10 @@ export class LibroDto {
   @Expose()
   @ApiProperty()
   readonly codigo: string;
+
+  @Expose()
+  @ApiProperty()
+  readonly cantidad: number;
 }
 
 export class CreateLibroDto {
@@ -64,6 +68,11 @@ export class CreateLibroDto {
   @IsNotEmpty()
   @ApiProperty()
   readonly codigo: string;
+
+  @IsNumber()
+  @IsNotEmpty()
+  @ApiProperty()
+  readonly cantidad: number;
 }
 
 export class UpdateLibroDto extends PartialType(CreateLibroDto) {
@@ -85,4 +94,7 @@ export class UpdateLibroDto extends PartialType(CreateLibroDto) {
 
   @ApiProperty()
   readonly codigo: string;
+
+  @ApiProperty()
+  readonly cantidad: number;
 }

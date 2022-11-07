@@ -9,22 +9,12 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class EstadisticaService {
   constructor(
     @InjectRepository(LibroLector) private libroLectorRepo: Repository<LibroLector>,
-    private libroLector: LibroLector,
   ) {
   }
 
 
   async getTop5Libros() {
-    // const librosLeidos = await this.libroLectorRepo.find(
-    //   {
-    //     where: {
-    //       estado: 'L'
-    //     }, 
-    //     take: 5,
-        
-    //   }
-    // )
-    return await this.libroLectorRepo.query("sp_prueba @email='"+email +"'");
+    return await this.libroLectorRepo.query("SP_EstadisticasEspecificas @TipoEstadistica = 'libros5'");  
   }
 
   // async find(email: string): Promise<Usuario[]>{
@@ -33,11 +23,11 @@ export class EstadisticaService {
 
 
 
-  getTop5Instituciones() {
-
+  async getTop5Instituciones() {
+    return await this.libroLectorRepo.query("SP_EstadisticasEspecificas @TipoEstadistica = 'instituciones5'"); 
   }
 
-  getTop5Lectores() {
-    
+  async getTop5Lectores() {
+    return await this.libroLectorRepo.query("SP_EstadisticasEspecificas @TipoEstadistica = 'lectores5'"); 
   }
 }

@@ -36,8 +36,12 @@ export class LibroService {
   // }
 
   async countAll(): Promise<number> {
-    const lectores = await this.libroRepo.count();
-    return lectores
+    let contador = 0;
+    const libros = this.findAll();
+    (await libros).forEach((libro: LibroDto) => {
+      contador = contador + libro.cantidad;
+    });
+    return contador;
   }
 
   // async countLibroPrestaodsfindAll(): Promise<number> {
@@ -65,8 +69,35 @@ export class LibroService {
   }
 
   async update(id: any, updateLibroDto: UpdateLibroDto): Promise<LibroDto> {
-    const libro = await this.libroRepo.findOneBy(id);
+    const libro = await this.libroRepo.findOneBy({id: id});
+    if (updateLibroDto.estado == 'A') {
+      updateLibroDto = {
+        autor: updateLibroDto.autor,
+        cantidad: updateLibroDto.cantidad,
+        estado: updateLibroDto.cantidad == 0 ? libro.estado = 'P' : libro.estado = 'A',
+        nombre: updateLibroDto.nombre,
+        codigo: updateLibroDto.codigo,
+        fotoPortada: updateLibroDto.fotoPortada,
+        resumen: updateLibroDto.resumen,
+      }
+    } else {
+      updateLibroDto = {
+        autor: updateLibroDto.autor,
+        cantidad: updateLibroDto.cantidad,
+        estado: libro.cantidad < updateLibroDto.cantidad ? libro.estado = 'A' : libro.estado = 'P',
+        nombre: updateLibroDto.nombre,
+        codigo: updateLibroDto.codigo,
+        fotoPortada: updateLibroDto.fotoPortada,
+        resumen: updateLibroDto.resumen,
+      }
+    }
     this.libroRepo.merge(libro, updateLibroDto);
+    const guardarDato: LibroDto = await this.libroRepo.save(libro);
+    return plainToClass(LibroDto, guardarDato)
+  }
+
+  async ajusteCantidadLibro(libro, cantidad) {
+    libro.cantidad = cantidad;
     const guardarDato: LibroDto = await this.libroRepo.save(libro);
     return plainToClass(LibroDto, guardarDato)
   }

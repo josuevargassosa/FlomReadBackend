@@ -20,6 +20,18 @@ export class LibroLectorDto {
     @Expose()
     @ApiProperty()
     readonly estado: string;
+
+    @Expose()
+    @ApiProperty()
+    readonly tiempo: Date;
+
+    @Expose()
+    @ApiProperty()
+    readonly fechaCreacion: Date;
+
+    @Expose()
+    @ApiProperty()
+    readonly fechaModificacion: Date;
 }
 
 export class prestamosLectorDto {

@@ -2,12 +2,13 @@ import { Module } from '@nestjs/common';
 import { ResumenService } from './services/resumen.service';
 import { ResumenController } from './controllers/resumen.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Resumen } from './entities/resuman.entity';
+import { Comentario } from './entities/resuman.entity';
+import { LibroModule } from 'src/libro/libro.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Resumen])],
+  imports: [TypeOrmModule.forFeature([Comentario]), LibroModule],
   controllers: [ResumenController],
   providers: [ResumenService],
   exports: [ResumenService]
 })
-export class ResumenModule {}
+export class ComentarioModule {}

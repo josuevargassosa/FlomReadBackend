@@ -10,6 +10,7 @@ async function bootstrap() {
     .setTitle('FlomRead API')
     .setDescription('API REST')
     .setVersion('1.0')
+    .addBearerAuth()
     // .addTag('flomread')
     .build();
   const document = SwaggerModule.createDocument(app, config);

@@ -1,4 +1,4 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 
@@ -25,14 +25,18 @@ export class Libro {
     estado: string
 
 
-    @Column({name: 'FechaCreacion'})
-    fechaCreacion: Date
+    @Column({ name: 'FechaCreacion'})
+    fechaCreacion: Date = new Date()
 
 
-    @Column({name: 'FechaModificacion'})
-    fechaModificacion: Date
+    @UpdateDateColumn({name: 'FechaModificacion'})
+    fechaModificacion: Date = new Date();
 
     @Column({name: 'Codigo'})
     codigo: string
+
+    @Column({name: 'Cantidad'})
+    cantidad: number
+
 
 }

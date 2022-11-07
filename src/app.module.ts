@@ -8,22 +8,31 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LectorModule } from './lector/lector.module';
 import { LibroModule } from './libro/libro.module';
-import { ResumenModule } from './comentario/resumen.module';
+import { ComentarioModule } from './comentario/resumen.module';
 import { DatabaseModule } from './database/database.module';
 import { EstadisticaModule } from './estadistica/estadistica.module';
 import { LibroLectorModule } from './libro-lector/libro-lector.module';
+import { ConfigModule } from '@nestjs/config';
+import { enviroments } from './enviroments';
+import config from './config';
 
 @Module({
   imports: [
-    // AuthModule,
+    ConfigModule.forRoot({
+      envFilePath: enviroments[process.env.NODE_ENV] || '.env',
+      load: [config],
+      isGlobal: true,
+    }),
+    
+    AuthModule,
     DatabaseModule,
     LectorModule,
     LibroModule,
-    ResumenModule,
+    ComentarioModule,
     EstadisticaModule,
     LibroLectorModule,
   ],
-  controllers: [AdministradorController, AppController],
-  providers: [AdministradorService, AppService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
