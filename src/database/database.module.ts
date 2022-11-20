@@ -10,12 +10,12 @@ const API_KEY_PROD = 'PROD1212121SA';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'mssql',
-      host: 'localhost',
-      port: 1433,
-      username: 'josue',
-      password: 'josue123',
-      database: 'flom',
+      type: process.env.DATABASE_TYPE as any,
+      host: process.env.DATABASE_HOST,
+      port: parseInt( process.env.DATABASE_PORT, 10),
+      username: process.env.DATABASE_USERNAME,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       options: { encrypt: false },
       autoLoadEntities: true,
       // entities: [__dirname + '/**/*.entity{.ts,.js}'],
@@ -27,6 +27,6 @@ const API_KEY_PROD = 'PROD1212121SA';
   //     useValue: process.env.NODE_ENV === 'prod' ? API_KEY_PROD : API_KEY,
   //   },
   // ],
-  // exports: ['API_KEY', TypeOrmModule],
+  exports: [TypeOrmModule],
 })
 export class DatabaseModule { }

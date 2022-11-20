@@ -3,7 +3,6 @@ import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { classToPlain, plainToClass } from 'class-transformer';
-import * as bcrypt from "bcrypt";
 
 import { IS_PUBLIC_KEY } from '../decorators/public.decorator';
 import { Administrador } from 'src/administrador/entities/administrador.entity';
